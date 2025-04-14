@@ -300,6 +300,7 @@ def throughput(data_loader, model, logger):
 
 
 if __name__ == '__main__':
+    print(torch.version.cuda)
     args, config = parse_option()
 
     if config.AMP_OPT_LEVEL:

@@ -105,7 +105,11 @@ def build_dataset(is_train, config):
             dataset = CachedImageFolder(config.DATA.DATA_PATH, ann_file, prefix, transform,
                                         cache_mode=config.DATA.CACHE_MODE if is_train else 'part')
         else:
-            root = os.path.join(config.DATA.DATA_PATH, prefix)
+            # root = os.path.join(config.DATA.DATA_PATH, prefix)
+            if is_train:
+                root = "/oscar/data/shared/imagenet/ILSVRC2012/train"
+            else:
+                root = "/users/zyiqun/data/imagenet-val"
             dataset = datasets.ImageFolder(root, transform=transform)
         nb_classes = 1000
     elif config.DATA.DATASET == 'imagenet22K':
